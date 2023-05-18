@@ -1,0 +1,26 @@
+﻿@page
+@using System.Data.SqlClient;
+@{
+
+
+    try
+    {
+        string id = Request.Query["id"];
+
+        string connectionString = "Data Source=CAUSTIC\\CAUSTIC;Initial Catalog=mystore;Integrated Security=True";
+        using SqlConnection connection = new(connectionString);
+        connection.Open();
+        string sqlCmd = "DELETE FROM CLIENTS WHERE id=@id";
+        using SqlCommand cmd = new SqlCommand(sqlCmd, connection);
+        cmd.Parameters.AddWithValue("@id", id);
+        cmd.ExecuteNonQuery();
+
+
+    }
+    catch (Exception ex)
+    {
+        Console.WriteLine(ex.Message);
+    }
+    Response.Redirect("Clients/Index");
+
+}
