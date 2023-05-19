@@ -32,7 +32,7 @@ namespace ClientList.Pages.Clients
                 using SqlConnection connection = new(connectionString);
                 connection.Open();
                 string sqlCmd = "INSERT INTO clients" + "(name, email, phone, address) VALUES" + "(@name, @email, @phone, @address)";
-                using SqlCommand cmd = new SqlCommand(sqlCmd, connection);
+                using SqlCommand cmd = new(sqlCmd, connection);
                     cmd.Parameters.AddWithValue("@name", clientinfo.name);
                     cmd.Parameters.AddWithValue("@email", clientinfo.email);
                     cmd.Parameters.AddWithValue("@phone", clientinfo.phone);
